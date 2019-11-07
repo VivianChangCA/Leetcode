@@ -4,6 +4,10 @@ class Solution(object):
         :type l1: ListNode
         :type l2: ListNode
         :rtree: ListNode
+        : Linked list 增加一個Dummy head,更改下節點
+        ç TimeComplexity : All other work is constant, so the overall complexity is linear.
+        ç SpaceComplexity : O(1)
+        解題 https://www.youtube.com/watch?v=GfRQvf7MB3k
         """
         prehead=ListNode(-1)
         prev=prehead
