@@ -1,3 +1,10 @@
+# Definition for a binary tree node.
+# class TreeNode(object):
+#     def __init__(self, x):
+#         self.val = x
+#         self.left = None
+#         self.right = None
+
 class Codec:
     from collections import deque
     def serialize(self, root):
@@ -9,17 +16,18 @@ class Codec:
         if not root: return ''
         queue = deque()
         queue.append(root)
-        res=''
+        res=[]
         while queue:
           node=queue.popleft()
-          if not node: 
-            res+='None,'
+          if not node:  
+            res.append('None')
             continue
-          res += str(node.val)+','
+           
+          res.append(str(node.val))
           queue.append(node.left)
           queue.append(node.right)
         
-        return res 
+        return ','.join(res) 
 
     def deserialize(self, data):
         if not data: return None
@@ -41,3 +49,5 @@ class Codec:
                 queue.append(right)
             i += 1
         return root
+        
+ 
