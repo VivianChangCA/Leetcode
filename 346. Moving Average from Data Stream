@@ -1,0 +1,14 @@
+class MovingAverage:
+
+    def __init__(self, size: int):
+        self.maxSize = size
+        self.queue = deque()
+        self.sum = 0
+        self.curSize = 0
+        
+    def next(self, val: int) -> float:
+        self.curSize += 1 
+        self.queue.append(val)
+        leftValue = self.queue.popleft() if self.curSize > self.maxSize else 0  
+        self.sum = self.sum - leftValue + val  
+        return  self.sum / min(self.maxSize, self.curSize )
