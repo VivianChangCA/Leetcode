@@ -1,0 +1,26 @@
+# time O(n) Space O(n)
+# int ( A/B) to avoid negative number with remainder issuee
+class Solution:
+    def calculate(self, s: str) -> int:
+      stack = []
+      num = 0 
+      n = len(s)
+      pre_char = "+"
+      
+      for i in range(n):
+        char = s[i]
+        if char.isdigit():
+          num = 10*num + int(char)
+        
+        if char in ("+","-","*","/") or i == n-1:
+          if pre_char == "+":
+            stack.append(num)
+          if pre_char == "-":
+            stack.append(-num)
+          if pre_char == "*":
+            stack.append(stack.pop()*num)
+          if pre_char == "/":
+            stack.append( int(stack.pop()/num) )
+          pre_char = char 
+          num = 0   
+      return sum(stack)
