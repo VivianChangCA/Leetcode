@@ -1,12 +1,14 @@
 class Solution:
-    def rangeSumBST(self, root: Optional[TreeNode], low: int, high: int) -> int:
-        result = 0
-        queue  = deque([root])  
+    def rangeSumBST(self, root: TreeNode, L: int, R: int) -> int:  
+        queue = deque( [root])
+        result = 0 
+        
         while queue:
-            node = queue.popleft() 
-            if low <= node.val <= high:
-                result += node.val 
-            if node.left: queue.append(node.left)
-            if node.right:queue.append(node.right)
-            
+          node = queue.popleft()
+          if not node: continue
+          if L <= node.val <= R:
+            result += node.val
+          if L < node.val: queue.append(node.left)
+          if node.val < R: queue.append(node.right)
+          
         return result 
